@@ -66,7 +66,8 @@ class Bittrex(object):
 
         return requests.get(
             request_url,
-            headers={"apisign": hmac.new(self.api_secret.encode(), request_url.encode(), hashlib.sha512).hexdigest()}
+            headers={"apisign": hmac.new(self.api_secret.encode(), request_url.encode(), hashlib.sha512).hexdigest()},
+            timeout=timeout
         ).json()
 
     def get_markets(self):
