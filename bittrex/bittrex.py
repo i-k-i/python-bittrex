@@ -28,11 +28,13 @@ class Bittrex(object):
     """
     Used for requesting Bittrex with API key and API secret
     """
+    resp_timeout = 1
+    
     def __init__(self, api_key, api_secret):
         self.api_key = str(api_key) if api_key is not None else ''
         self.api_secret = str(api_secret) if api_secret is not None else ''
 
-    def api_query(self, method, options=None):
+    def api_query(self, method, options=None, timeout=None):
         """
         Queries Bittrex with given method and options
 
@@ -106,10 +108,8 @@ class Bittrex(object):
         :return: Summaries of active exchanges in JSON
         :rtype : dict
         """
-        options = {
-            'timeout':1
-            }
-        return self.api_query('getmarketsummaries', options=options)
+
+        return self.api_query('getmarketsummaries', timeout=self.resp_timeout)
       
     def get_marketsummary(self, market):
         """
