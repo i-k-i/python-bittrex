@@ -106,7 +106,10 @@ class Bittrex(object):
         :return: Summaries of active exchanges in JSON
         :rtype : dict
         """
-        return self.api_query('getmarketsummaries')
+        options = {
+            'timeout':1
+            }
+        return self.api_query('getmarketsummaries', options=options)
       
     def get_marketsummary(self, market):
         """
